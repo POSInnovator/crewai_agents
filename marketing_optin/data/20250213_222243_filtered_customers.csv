@@ -1,0 +1,3 @@
+id,email,created,updated,shopping_store,store_brand,opt_in
+CUST001,john.doe@example.com,2025-02-10T14:30:00,2025-02-13T09:00:00,Store_101,Brand_A,N
+CUST003,alice.johnson@example.com,2025-02-12T12:45:00,2025-02-13T08:30:00,Store_303,Brand_C,N
