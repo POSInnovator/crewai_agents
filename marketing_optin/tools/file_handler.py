@@ -34,7 +34,7 @@ class FileHandlerTool():
         return filepath
 
     @tool("Filter customer data based on conditions")
-    def filter_customer(csv_filepath="data/customer_data.csv", filter_column="opt_in", filter_value=False):
+    def filter_customer(csv_filepath="data/customer.csv", filter_column="opt_in", filter_value=False):
         """
         Reads 'customer_data.csv' and applies a filter condition.
         The filtered data is saved as 'filtered_customers.csv'.
