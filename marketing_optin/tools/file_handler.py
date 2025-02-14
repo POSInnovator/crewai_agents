@@ -2,6 +2,8 @@ import json
 import pandas as pd
 from datetime import datetime
 from langchain.tools import tool
+from glob import glob
+import os
 
 class FileHandlerTool():
 
@@ -34,13 +36,23 @@ class FileHandlerTool():
         return filepath
 
     @tool("Filter customer data based on conditions")
-    def filter_customer(csv_filepath="data/customer.csv", filter_column="opt_in", filter_value=False):
+    def filter_customer(filter_column="opt_in", filter_value=False):
         """
-        Reads 'customer_data.csv' and applies a filter condition.
-        The filtered data is saved as 'filtered_customers.csv'.
+        Reads the latest available '*_filtered_customers.csv' file and applies a filter condition.
+        After reading, the file is renamed to '*.csv.read'.
+        The filtered data is saved as a new 'filtered_customers.csv'.
         """
         try:
-            df = pd.read_csv(csv_filepath)
+            # Step 1: Find the latest file matching *_filtered_customers.csv
+            file_list = glob("data/*_filtered_customers.csv")
+            if not file_list:
+                return "No matching files found."
+
+            # Sort files by modification time (most recent first)
+            latest_file = max(file_list, key=os.path.getmtime)
+
+            # Step 2: Read the latest CSV file
+            df = pd.read_csv(latest_file)
 
             # Ensure the filter column exists
             if filter_column not in df.columns:
@@ -49,10 +61,11 @@ class FileHandlerTool():
             # Apply filtering
             filtered_df = df[df[filter_column] == filter_value]
 
-            # Save filtered data
+            # Step 3: Save the filtered data with the same pattern
             filtered_filepath = "data/filtered_customers.csv"
             filtered_df.to_csv(filtered_filepath, index=False)
 
             return filtered_filepath
         except Exception as e:
             return f"Error processing file: {str(e)}"
+
