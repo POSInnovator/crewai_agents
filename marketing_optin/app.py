@@ -51,7 +51,7 @@ if st.button("🚀 Run CrewAI Process"):
         time.sleep(1)
 
         # Run the CrewAI process with the entered date range
-        crew = EmailMarketingCrew(date_range)
+        crew = EmailMarketingCrew(date_range, "./data/customers.json")
 
         with st.spinner("🤖 Agents are working..."):
             time.sleep(1)
@@ -86,7 +86,7 @@ if st.button("🚀 Run CrewAI Process"):
         # Display the final filtered CSV file
         st.subheader("📂 Final Filtered Customer Data:")
         try:
-            filtered_df = pd.read_csv(csv_file)
+            filtered_df = pd.read_csv("./data/filtered_customers.csv")
             st.dataframe(filtered_df)  # Display as a table
         except FileNotFoundError:
             st.error(f"⚠️ Filtered customer file `{csv_file}` not found.")

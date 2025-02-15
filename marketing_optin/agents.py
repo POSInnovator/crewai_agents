@@ -39,7 +39,7 @@ class MarketingAgent():
         """POSAgent: Reads JSON and converts it to CSV"""
         return Agent(
             role="POS Customer Data Processor",
-            goal="Use the customers.json file and extracts customers data based on the critera and save them into CSV",
+            goal="Use the customers.json file and extracts customers data based on the filter critera and save them into CSV",
             backstory="You are responsible for processing customer data efficiently.",
             tools=[FileHandlerTool.load_json, FileHandlerTool.save_csv],
             verbose=True,
@@ -51,7 +51,7 @@ class MarketingAgent():
         """ # MarketingAgent: Identifies customers not opted in and lists them"""
         return Agent(
             role="Marketing Data Analyst",
-            goal="Analyze CSV and find customers who has not opt-in and save.",
+            goal="Analyze CSV file and find customers who has opt-in as N and save it.",
             backstory="Your job is to extract customers needing marketing emails into a CSV file.",
             tools=[FileHandlerTool.filter_customer],
             verbose=True,

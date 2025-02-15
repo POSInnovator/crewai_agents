@@ -1,4 +1,6 @@
 id,email,created_at,updated_at,shopping_store,store_brand,opt_in
 CUST001,john.doe@example.com,2025-02-10,2025-02-13,Store_101,Brand_A,N
+CUST002,jane.smith@example.com,2025-02-13,2025-02-13,Store_202,Brand_B,Y
 CUST003,alice.johnson@example.com,2025-02-12,2025-02-13,Store_303,Brand_C,N
 CUST004,bob.williams@example.com,2025-02-13,2025-02-13,Store_404,Brand_A,N
+CUST005,charlie.brown@example.com,2025-02-11,2025-02-13,Store_505,Brand_B,Y

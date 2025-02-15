@@ -6,7 +6,7 @@ from textwrap import dedent
 class MarketingTask():
 
 
-    def extract_customers_task(self, agent, date_range):
+    def extract_customers_task(self, agent, date_range, customers):
         """
         Extract customer records from JSON based on the given date range and save them as a CSV file.
         Args:
@@ -17,10 +17,11 @@ class MarketingTask():
         """
   
         return Task(
-                    description="""Load the customers json file from the data folder and apply filter on the created date 
-                    which should be within date range {} provided. Stick to the file name mentioned in the tool.""".format(date_range) ,
+                    description="""Load the {} file from the data folder and apply filter on the created date 
+                    which should be within date range {} provided.""".format(customers,date_range) ,
                     agent=agent,
-                    expected_output="A CSV file containing customer records.",
+                    expected_output="""A CSV file containing all the fileds in the original file but should only have filtered records matching the
+                    criteria.""",
            
                 )
 
@@ -36,7 +37,7 @@ class MarketingTask():
         """
   
         return Task(
-            description="Using the CSV file find records which not opt_in and store in the CSV. Stick to the file name mentioned in the tool.",
-            agent=agent,
-            expected_output="A CSV file listing customers needing marketing emails.",
-         )
+                    description="Using the CSV file from the extract_customers_task task find records which have opt_in as N and store in the CSV.",
+                    agent=agent,
+                    expected_output="A CSV file listing customers needing marketing emails.",
+        )
