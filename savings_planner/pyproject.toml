@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "agentic_savings_planner"
+version = "0.1.0"
+description = "An AI-powered Savings Planner using CrewAI"
+authors = ["POSInnovator"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.10.0,<3.12"
+crewai = ">=0.1.24"
+langchain = "^0.3.18"
+langchain-openai = "^0.3.5"
+langchain-community = "^0.3.17"
+pandas = "^2.2.0"
+numpy = "^1.26.4"
+matplotlib = "^3.8.2"
+seaborn = "^0.13.2"
+prophet = "^1.1.5"  # For savings trend forecasting
+statsmodels = "^0.14.1"  # For statistical time-series analysis
+python-dotenv = "1.0.0"
+unstructured = "0.10.25"
+
+[tool.pyright]
+useLibraryCodeForTypes = true
+exclude = [".cache"]
+
+[tool.ruff]
+select = ['E', 'W', 'F', 'I', 'B', 'C4', 'ARG', 'SIM']
+ignore = ['W291', 'W292', 'W293']
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
